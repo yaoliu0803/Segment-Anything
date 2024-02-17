@@ -147,7 +147,7 @@ class SamAutomaticMaskGenerator:
                segmentation (dict(str, any) or np.ndarray): The mask. If
                  output_mode='binary_mask', is an array of shape HW. Otherwise,
                  is a dictionary containing the RLE.
-               bbox (list(float)): The box around the mask, in XYWH format.
+               bbox (list(float)): The box around the mask, in XYWH format.[x,y,w,h]
                area (int): The area in pixels of the mask.
                predicted_iou (float): The model's own prediction of the mask's
                  quality. This is filtered by the pred_iou_thresh parameter.
@@ -183,7 +183,7 @@ class SamAutomaticMaskGenerator:
         for idx in range(len(mask_data["segmentations"])):
             ann = {
                 "segmentation": mask_data["segmentations"][idx],
-                "area": area_from_rle(mask_data["rles"][idx]),
+                "area": area_from_rle(mask_data["rles"][idx]), # The area in pixels of the mask.
                 "bbox": box_xyxy_to_xywh(mask_data["boxes"][idx]).tolist(),
                 "predicted_iou": mask_data["iou_preds"][idx].item(),
                 "point_coords": [mask_data["points"][idx].tolist()],

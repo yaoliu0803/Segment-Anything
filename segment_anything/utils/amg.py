@@ -150,6 +150,8 @@ def rle_to_mask(rle: Dict[str, Any]) -> np.ndarray:
 
 
 def area_from_rle(rle: Dict[str, Any]) -> int:
+    # print("rle=", rle, "rle['counts']=", rle["counts"][1::2])
+    # print("area_from_rle=", rle["counts"][1::2],"area len=", len(rle["counts"][1::2]))
     return sum(rle["counts"][1::2])
 
 

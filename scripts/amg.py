@@ -25,6 +25,7 @@ parser.add_argument(
     "--input",
     type=str,
     required=True,
+    choices="test_image",
     help="Path to either a single input image or folder of images.",
 )
 
